@@ -47,7 +47,7 @@ async def progress_stream(job_id:str):
             progress = job_progres.get(job_id)
             
             if progress == "done":
-                yield "data: Done\n\n"
+                yield "data:Job Completed\n\n"
                 break
             yield f"data:{progress}\n\n"
             await asyncio.sleep(1)
