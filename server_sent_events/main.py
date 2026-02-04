@@ -40,20 +40,21 @@ async def start_job(background_tasks:BackgroundTasks):
     return {"job_id":job_id}
 #SSE endpoint
 
+async def event_generator(job_id:str):
+    while True:
+        progress = job_progres.get(job_id)
+            
+        if progress == "done":
+            yield "data:Job Completed\n\n"
+            break
+        yield f"data:{progress}\n\n"
+        await asyncio.sleep(1)
+
 @app.get('/progress/{job_id}')
 async def progress_stream(job_id:str):
-    async def event_generator():
-        while True:
-            progress = job_progres.get(job_id)
-            
-            if progress == "done":
-                yield "data:Job Completed\n\n"
-                break
-            yield f"data:{progress}\n\n"
-            await asyncio.sleep(1)
             
     return StreamingResponse(
-        event_generator(),
+        event_generator(job_id),
         media_type="text/event-stream",
         headers={
             "Cache-Control": "no-cache",
