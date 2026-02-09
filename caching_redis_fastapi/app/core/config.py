@@ -1,6 +1,6 @@
-from pydantic import BaseSettings
+from pydantic import BaseModel
 
-class Settings(BaseSettings):
+class Settings(BaseModel):
     APP_NAME: str = "FastAPI Redis Cache"
     REDIS_HOST: str = "localhost"
     REDIS_PORT: int = 6379

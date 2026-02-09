@@ -1,25 +1,21 @@
-import json 
+import json
 from typing import Any, Optional
-from app.core.redis import redis
+from app.core.redis import get_redis
 
 
 class CacheService:
     @staticmethod
-    async def get(key:str) -> Optional[Any]:
+    async def get(key: str) -> Optional[Any]:
+        redis = get_redis()
         value = await redis.get(key)
-        
-        if value is None:
-            return None
-        return json.loads(value)
-    
+        return json.loads(value) if value else None
+
     @staticmethod
-    async def set(key:str,value:Any,ttl:int) -> None:
-        await redis.set(
-            key,
-            json.dumps(value),
-            ex=ttl
-        )
-        
+    async def set(key: str, value: Any, ttl: int) -> None:
+        redis = get_redis()
+        await redis.set(key, json.dumps(value), ex=ttl)
+
     @staticmethod
-    async def delte(key:str) -> None:
+    async def delete(key: str) -> None:
+        redis = get_redis()
         await redis.delete(key)
