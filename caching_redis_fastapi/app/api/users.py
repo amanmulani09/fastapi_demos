@@ -23,6 +23,7 @@ async def get_user(user_id:str):
     cached_user = await CacheService.get(cache_key)
     
     if cached_user:
+        print('returning from cache....')
         return cached_user
     
     #cache miss 

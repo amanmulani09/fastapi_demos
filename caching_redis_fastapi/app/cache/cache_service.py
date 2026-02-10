@@ -1,5 +1,6 @@
 import json
 from typing import Any, Optional
+from pydantic import BaseModel
 from app.core.redis import get_redis
 
 
@@ -13,6 +14,9 @@ class CacheService:
     @staticmethod
     async def set(key: str, value: Any, ttl: int) -> None:
         redis = get_redis()
+        # Convert Pydantic models to dict before JSON serialization
+        if isinstance(value, BaseModel):
+            value = value.model_dump()
         await redis.set(key, json.dumps(value), ex=ttl)
 
     @staticmethod
