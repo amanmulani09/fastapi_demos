@@ -15,9 +15,6 @@ Backend identifies user from session
 Cart stored against user
 
 
-give me a simple example of user session with step by step implementation and explanation - don't use real db store data in inmemory and use jwt for seesion or 
-
-
 - pydantic 
     - request validation 
     - consistent api response 
