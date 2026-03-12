@@ -2,7 +2,7 @@ from jose import jwt
 from datetime import datetime, timedelta
 import uuid
 from passlib.context import CryptContext
-from store.auth_store import refresh_sessions
+from app.store.auth_store import refresh_sessions
 
 SECRET_KEY = "super-secret-key"
 ALGORITHM = "HS256"

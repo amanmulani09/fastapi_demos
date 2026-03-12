@@ -1,6 +1,6 @@
 from fastapi import HTTPException
-from core.security import verify_password, create_access_token, create_refresh_token
-from repository.auth_repository import AuthRepository
+from app.core.security import verify_password, create_access_token, create_refresh_token
+from app.repository.auth_repository import AuthRepository
 
 class AuthService:
     

@@ -1,4 +1,4 @@
-from store.auth_store import users_db,refresh_sessions
+from app.store.auth_store import users_db,refresh_sessions
 
 class AuthRepository:
     
