@@ -4,25 +4,19 @@ from typing import Optional
 
 app = FastAPI()
 
-class User(BaseModel):
+class UserBase(BaseModel):
     name : str = Field(...,min_length=3,max_length=50)
     age : int = Field(..., gt=18,lt=60)
     email: EmailStr
-class UserCreateRequest(User):
+class UserCreate(UserBase):
     pass
 
-class CreateUserResponse(BaseModel):
+class UserResponse(BaseModel):
     msg: str
-    data:User    
-   
-class UserCreateResponse(BaseModel):
-    name : str = Field(min_length=3)
-    price: float = Field(gt=0, lt=100000)   
-    stock: int = Field(gt=0,)
-    category:Optional[str] = None
+    data:UserBase    
 
-@app.post('/user',response_model=UserCreateResponse)
-def create_user(user:UserCreateRequest): #CreateUser is the schema of the request body
+@app.post('/user',response_model=UserResponse)
+def create_user(user:UserCreate): #CreateUser is the schema of the request body
     return {
         "msg":"user created successfully",
         "data":user
