@@ -22,3 +22,5 @@ def create_user(user:UserCreate): #CreateUser is the schema of the request body
         "data":user
     }
 
+async def get_user(user_id:str):
+    
