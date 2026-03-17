@@ -2,10 +2,8 @@ from fastapi import FastAPI, BackgroundTasks
 from pydantic import BaseModel, Field
 app = FastAPI()
 
-
 class Template(BaseModel):
     template: str = Field(max_length=500)
-
 
 def write_notification(email:str,template=""):
     
