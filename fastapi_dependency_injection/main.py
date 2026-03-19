@@ -6,7 +6,6 @@ class Logger:
     def log(_self,message:str):
         print(f"logging message : {message}")
     
- 
 def get_logger():
     return Logger()        
 
@@ -38,7 +37,6 @@ def send_email(receipent:str,email:str,email_service:email_service_deps):
     
     email_service.send_email(receipent,email)
     
-    
 class Authservice:
     def validate_token(_self,token:str):
         
@@ -47,7 +45,6 @@ class Authservice:
         else: 
             raise HTTPException(status_code=401, detail="unauthorized user")
         
-        
 # create a fn to create auth service instance
 
 def get_auth_service():
@@ -55,8 +52,7 @@ def get_auth_service():
 
 # create a auth service dependecy 
 
-auth_service_deps= Annotated[Authservice, Depends(get_auth_service)]
-
+auth_service_deps = Annotated[Authservice, Depends(get_auth_service)]
 
 @app.post('/generate-report')
 def generate_report(token:str,auth_service:auth_service_deps):

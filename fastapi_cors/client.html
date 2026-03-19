@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Document</title>
+</head>
+<body>
+    <div id="container">
+        <ul id="list">
+
+        </ul>
+        <button id="btn">Fetch List</button>
+    </div>
+</body>
+
+<script>
+
+const btn = document.getElementById('btn');
+const list = document.getElementById('list');
+
+btn.addEventListener('click',async ()=>{
+
+    const res = await fetch('http://127.0.0.1:8000/get-list');
+    const {data} = await res.json();
+
+    data.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        list.appendChild(li);
+    });
+
+})
+
+</script>
+</html>
