@@ -165,7 +165,7 @@ Performance comparison between synchronous and asynchronous endpoints.
    - Interactive docs: `http://localhost:8000/docs`
    - Alternative docs: `http://localhost:8000/redoc`
 
-## 📖 Learning Path
+## 📖 Learning Path 
 
 **Recommended order for beginners:**
 
